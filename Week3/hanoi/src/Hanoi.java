@@ -11,7 +11,7 @@ public class Hanoi {
 
   // Print log of disk movement.
   private void moveDisk(int diskNumber, int fromBar, int toBar) {
-    System.out.println("Disk "+diskNumber+" moved from bar "+fromBar+" to bar "+toBar);
+    System.out.println("Disk " + diskNumber + " moved from bar " + fromBar + " to bar " + toBar);
   }
 
   // Returns the answer of Hanoi problem with initialized numDisks
