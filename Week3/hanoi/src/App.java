@@ -1,3 +1,5 @@
+package Week3.hanoi.src;
+
 import java.util.Scanner;
 
 public class App {
