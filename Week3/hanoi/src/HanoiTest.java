@@ -27,9 +27,18 @@ public class HanoiTest {
   @Test
   public void hanoiWithNegIntNumDiskTest() throws Exception {
     Hanoi hanoi = new Hanoi();
-    HanoiInputException hanoiException = 
+    HanoiInputException hanoiInputException = 
         assertThrows(HanoiInputException.class, () -> hanoi.calculateHanoiSteps(-1, 1, 2, 3));
-    String message = hanoiException.getMessage();
+    String message = hanoiInputException.getMessage();
     assertEquals("The number of disks should be a positive number.", message);
+  }
+
+  @Test
+  public void hanoiWithSameBars() throws Exception {
+    Hanoi hanoi = new Hanoi();
+    HanoiInputException hanoiInputException =
+        assertThrows(HanoiInputException.class, () -> hanoi.calculateHanoiSteps(4, 1, 1, 2));
+    String message = hanoiInputException.getMessage();
+    assertEquals("The three bars should be different from each other.", message);
   }
 }

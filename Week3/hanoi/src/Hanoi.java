@@ -15,6 +15,10 @@ public class Hanoi {
       throw new HanoiInputException("The number of disks should be a positive number.");
     }
 
+    if (startingPoint == mid || mid == destination || destination == startingPoint) {
+      throw new HanoiInputException("The three bars should be different from each other.");
+    }
+
     // Base case
     if (numDisks == 1) {
       // Print disk movement log.
