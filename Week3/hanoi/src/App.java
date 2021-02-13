@@ -1,31 +1,22 @@
-package Week3.hanoi.src;
-
 import java.util.Scanner;
 
 public class App {
   public static void main(String[] args) {
+    int numDisks = 0;  // The number of disks to move from fromBar to toBar.
 
-    // Get num of disks from System.in
-    // The number of disks should be more than 0.
-    int numDisks = 0;
+    // Get the number of disks from System.in
     Scanner sc = new Scanner(System.in);
-
-    if ((numDisks = sc.nextInt()) < 1) {
-      System.out.println("The number of disks cannot be negetive integer or zero.");
-      sc.close();
-      return;
-    }
-
-    Hanoi hanoiAlgorithm = new Hanoi(numDisks);
+    numDisks = sc.nextInt();
 
     // Print disk movement log and the answer.
+    Hanoi hanoi = new Hanoi();
     int ans = 0;
     try {
-      ans = hanoiAlgorithm.calculateHanoiSteps();
+      ans = hanoi.calculateHanoiSteps(numDisks, 1, 2, 3);
+      System.out.println("Answer: " + ans);
     } catch (HanoiInputException e) {
       System.out.println(e);
     }
-    System.out.println("Answer: " + ans);
 
     sc.close();
     return;
