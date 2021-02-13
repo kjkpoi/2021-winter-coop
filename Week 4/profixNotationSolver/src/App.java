@@ -14,7 +14,7 @@ public class App {
     
     // Make Profix Notation Solver to solve the expression 
     // and print the answer of the expression.
-    ProfixNotationSolver profixNotationSolver = new ProfixNotationSolver();
+    ProfixNotationSolverClass profixNotationSolver = new ProfixNotationSolverClass();
     try {
       double answer = profixNotationSolver.calculate(arithmeticExpression);
       System.out.println("Answer : " + answer);

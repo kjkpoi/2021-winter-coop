@@ -3,9 +3,9 @@ import java.util.Stack;
 // Calculate one profix notation arithemetic expression with no white space.
 // Operands should be natural numbers below 10.
 // Operators are +, -, *, and /.
-public class ProfixNotationSolver {
-  private Stack<Double> stack = new Stack<>();
-  private final char[] operators = {'+', '-', '*', '/'};
+public class ProfixNotationSolverClass {
+  private Stack<Double> stack = new Stack<>();  // Stack used when calculating.
+  private final char[] operatorsList = {'+', '-', '*', '/'}; // Valid operators array.
 
   // Calculate the given arithemetic expression and return the answer.
   public double calculate(String arithmeticExpression) throws Exception {
@@ -13,9 +13,11 @@ public class ProfixNotationSolver {
     for (int i = 0; i < arithmeticExpression.length(); ++i) {
       char term = arithmeticExpression.charAt(i);
       if (Character.isDigit(term)) {
+        // Push the digit term.
         stack.push((double) Character.digit(term, 10));
       } else if (isOperator(term)) {
         // Push the calculated answer to the stack.
+        // Two operands are needed to caculate.
         double operand1 = stack.pop();
         double operand2 = stack.pop();
         stack.push(operate(term, operand2, operand1));
@@ -31,8 +33,9 @@ public class ProfixNotationSolver {
   }
 
   // Check if the term is an operator or not.
+  // Only operators in the operatorsList are valid operators.
   public boolean isOperator(char term) {
-    for (char operator : operators) {
+    for (char operator : operatorsList) {
       if (term == operator) {
         return true;
       }

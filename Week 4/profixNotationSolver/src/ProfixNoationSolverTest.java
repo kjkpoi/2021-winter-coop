@@ -8,7 +8,7 @@ public class ProfixNoationSolverTest {
   @Test
   public void noOperandTest() throws Exception {
     String arithmeticExpression = "+";
-    ProfixNotationSolver profixNotationSolver = new ProfixNotationSolver();
+    ProfixNotationSolverClass profixNotationSolver = new ProfixNotationSolverClass();
     assertThrows(EmptyStackException.class, 
         () -> profixNotationSolver.calculate(arithmeticExpression));
   }
@@ -16,7 +16,7 @@ public class ProfixNoationSolverTest {
   @Test
   public void invalidInputTest() throws Exception {
     String arithmeticExpression = "76+3!";
-    ProfixNotationSolver profixNotationSolver = new ProfixNotationSolver();
+    ProfixNotationSolverClass profixNotationSolver = new ProfixNotationSolverClass();
     assertThrows(InvalidInputException.class, 
         () -> profixNotationSolver.calculate(arithmeticExpression));
   }
@@ -24,7 +24,7 @@ public class ProfixNoationSolverTest {
   @Test
   public void twoExpressionTest() throws Exception {
     String arithmeticExpression = "34+2";
-    ProfixNotationSolver profixNotationSolver = new ProfixNotationSolver();
+    ProfixNotationSolverClass profixNotationSolver = new ProfixNotationSolverClass();
     assertThrows(TwoOrMoreExpressionsException.class, 
         () -> profixNotationSolver.calculate(arithmeticExpression));
   }
@@ -35,8 +35,8 @@ public class ProfixNoationSolverTest {
     double[] answers = {8.5, 50, 27, 3};
 
     for (int i = 0; i < 4; ++i) {
-      ProfixNotationSolver profixNotationSolver =
-          new ProfixNotationSolver();
+      ProfixNotationSolverClass profixNotationSolver =
+          new ProfixNotationSolverClass();
       double solverAnswer = profixNotationSolver.calculate(arithmeticExpressions[i]);
       assertEquals(answers[i], solverAnswer);
     }
