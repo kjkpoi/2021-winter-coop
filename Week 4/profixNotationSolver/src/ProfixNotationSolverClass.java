@@ -25,6 +25,8 @@ public class ProfixNotationSolverClass {
         throw new InvalidInputException();
       }
     }
+    // Answer is the one last term in the stack.
+    // If two or more terms remain in the stack, it means that it is not an expression.
     answer = stack.pop();
     if (!stack.empty()) {
       throw new TwoOrMoreExpressionsException();
