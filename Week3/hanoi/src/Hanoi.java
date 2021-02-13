@@ -8,6 +8,8 @@ public class Hanoi {
   }
 
   // Returns the answer of Hanoi problem with given numDisks.
+  // numDisks: number of disks to be moved.
+  // Disks should be move from starting point bar to destionation bar.
   public int calculateHanoiSteps(int numDisks, int startingPoint, 
                                  int mid, int destination) throws HanoiInputException {
     // The number of disks should be a positive integer.
@@ -15,6 +17,7 @@ public class Hanoi {
       throw new HanoiInputException("The number of disks should be a positive number.");
     }
 
+    // The three bars should be different from each other.
     if (startingPoint == mid || mid == destination || destination == startingPoint) {
       throw new HanoiInputException("The three bars should be different from each other.");
     }
