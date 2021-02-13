@@ -1,57 +1,32 @@
 import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.EmptyStackException;
 import org.junit.Test;
 
 public class ProfixNoationSolverTest {
   @Test
   public void noOperandTest() throws Exception {
     String arithmeticExpression = "+";
-    ProfixNotationSolver profixNotationSolver = new ProfixNotationSolver(arithmeticExpression);
-    ProfixNotationInputException profixNotationInputException = 
-        assertThrows(ProfixNotationInputException.class, () -> profixNotationSolver.calculate());
-    String message = profixNotationInputException.getMessage();
-    assertEquals("There is no operand to calculate: invalid expression.", message);
-  }
-
-  @Test
-  public void oneOperandTest() throws Exception {
-    String arithmeticExpression = "7+";
-    ProfixNotationSolver profixNotationSolver = new ProfixNotationSolver(arithmeticExpression);
-    ProfixNotationInputException profixNotationInputException = 
-        assertThrows(ProfixNotationInputException.class, () -> profixNotationSolver.calculate());
-    String message = profixNotationInputException.getMessage();
-    assertEquals("Need two operands to calculate: invalid expression.", message);
+    ProfixNotationSolver profixNotationSolver = new ProfixNotationSolver();
+    assertThrows(EmptyStackException.class, 
+        () -> profixNotationSolver.calculate(arithmeticExpression));
   }
 
   @Test
   public void invalidInputTest() throws Exception {
     String arithmeticExpression = "76+3!";
-    ProfixNotationSolver profixNotationSolver = new ProfixNotationSolver(arithmeticExpression);
-    ProfixNotationInputException profixNotationInputException = 
-        assertThrows(ProfixNotationInputException.class, () -> profixNotationSolver.calculate());
-    String message = profixNotationInputException.getMessage();
-    assertEquals("Terms should be either number or operators: wrong input.", message);
+    ProfixNotationSolver profixNotationSolver = new ProfixNotationSolver();
+    assertThrows(InvalidInputException.class, 
+        () -> profixNotationSolver.calculate(arithmeticExpression));
   }
 
   @Test
-  public void divideByZeroTest() throws Exception {
-    String arithmeticExpression = "70/";
-    ProfixNotationSolver profixNotationSolver = new ProfixNotationSolver(arithmeticExpression);
-    ProfixNotationInputException profixNotationInputException = 
-        assertThrows(ProfixNotationInputException.class, () -> profixNotationSolver.calculate());
-    String message = profixNotationInputException.getMessage();
-    assertEquals("Divide by zero: cannot resolve the expression.", message);
-  }
-
-  @Test
-  public void lackOfOperatorTest() throws Exception {
-    String arithmeticExpression = "73+2";
-    ProfixNotationSolver profixNotationSolver = new ProfixNotationSolver(arithmeticExpression);
-    ProfixNotationInputException profixNotationInputException = 
-        assertThrows(ProfixNotationInputException.class, () -> profixNotationSolver.calculate());
-    String message = profixNotationInputException.getMessage();
-    assertEquals("Lack of operator.", message);
+  public void twoExpressionTest() throws Exception {
+    String arithmeticExpression = "34+2";
+    ProfixNotationSolver profixNotationSolver = new ProfixNotationSolver();
+    assertThrows(TwoOrMoreExpressionsException.class, 
+        () -> profixNotationSolver.calculate(arithmeticExpression));
   }
 
   @Test
@@ -60,8 +35,9 @@ public class ProfixNoationSolverTest {
     double[] answers = {8.5, 50, 27, 3};
 
     for (int i = 0; i < 4; ++i) {
-      ProfixNotationSolver profixNotationSolver = new ProfixNotationSolver(arithmeticExpressions[i]);
-      double solverAnswer = profixNotationSolver.calculate();
+      ProfixNotationSolver profixNotationSolver =
+          new ProfixNotationSolver();
+      double solverAnswer = profixNotationSolver.calculate(arithmeticExpressions[i]);
       assertEquals(answers[i], solverAnswer);
     }
   }
