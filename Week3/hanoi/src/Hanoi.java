@@ -7,9 +7,9 @@ public class Hanoi {
                         + " to bar " + destination);
   }
 
-  // Returns the answer of Hanoi problem with given numDisks.
-  // numDisks: number of disks to be moved.
-  // Disks should be move from starting point bar to destionation bar.
+  // Calculate the step of moving the number of given disks
+  // from startingPoint bar to destination bar. 
+  // Print disk movement log during the execution.
   public int calculateHanoiSteps(int numDisks, int startingPoint, 
                                  int mid, int destination) throws HanoiInputException {
     // The number of disks should be a positive integer.
@@ -29,11 +29,14 @@ public class Hanoi {
       return 1;
     }
 
-    // Return the answer of the Hanoi problem with numDisks
-    int first = calculateHanoiSteps(numDisks - 1, startingPoint, destination, mid);
+    // Calculate the number of times the top numDisks-1 disks are moved to the mid bar. 
+    int prevMove = calculateHanoiSteps(numDisks - 1, startingPoint, destination, mid);
+    // The numDisks-th disk is moved to the end.
     moveDisk(numDisks, startingPoint, destination);
-    int third = calculateHanoiSteps(numDisks - 1, mid, startingPoint, destination);
+    // Calculate the number of times disks in the mid bar are moved to the destination bar.
+    int postMove = calculateHanoiSteps(numDisks - 1, mid, startingPoint, destination);
     
-    return first + 1 + third;
+    // Return the answer of the Hanoi problem with numDisks
+    return prevMove + 1 + postMove;
   }
 }

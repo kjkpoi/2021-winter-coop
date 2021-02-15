@@ -34,6 +34,15 @@ public class HanoiTest {
   }
 
   @Test
+  public void honoiWithZeroDiskTest() throws Exception {
+    Hanoi hanoi = new Hanoi();
+    HanoiInputException hanoiInputException =
+        assertThrows(HanoiInputException.class,() -> hanoi.calculateHanoiSteps(0, 1, 2, 3));
+    String message = hanoiInputException.getMessage();
+    assertEquals("The number of disks should be a positive number.", message);
+  }
+
+  @Test
   public void hanoiWithSameBars() throws Exception {
     Hanoi hanoi = new Hanoi();
     HanoiInputException hanoiInputException =
