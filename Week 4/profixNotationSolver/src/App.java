@@ -22,7 +22,7 @@ public class App {
       e.printStackTrace();
     } catch (InvalidInputException e) {
       e.printStackTrace();
-    } catch (TwoOrMoreExpressionsException e) {
+    } catch (NotAnExpressionException e) {
       e.printStackTrace();
     }
     return;

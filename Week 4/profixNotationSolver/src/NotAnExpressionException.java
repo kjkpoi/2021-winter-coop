@@ -2,6 +2,6 @@
 // When the solver receives an expression consisting of two or more expressions, 
 // the exception is raised.
 @SuppressWarnings("serial")
-public class TwoOrMoreExpressionsException extends Exception {
+public class NotAnExpressionException extends Exception {
 
 }

@@ -1,5 +1,7 @@
 import java.util.Stack;
 
+import javax.management.RuntimeErrorException;
+
 // Calculate one profix notation arithemetic expression with no white space.
 // Operands should be natural numbers below 10.
 // Operators are +, -, *, and /.
@@ -29,7 +31,7 @@ public class ProfixNotationSolverClass {
     // If two or more terms remain in the stack, it means that it is not an expression.
     answer = stack.pop();
     if (!stack.empty()) {
-      throw new TwoOrMoreExpressionsException();
+      throw new NotAnExpressionException();
     }
     return answer;
   }
@@ -62,7 +64,8 @@ public class ProfixNotationSolverClass {
         result = operand1 / operand2;
         break;
       default:
-        assert (false);
+        throw new RuntimeException(
+          "Operators are verified in isOperator(). Should not be reached.");
     }
     return result;
   }
