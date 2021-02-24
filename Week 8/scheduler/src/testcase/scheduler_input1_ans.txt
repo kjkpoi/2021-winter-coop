@@ -1,0 +1,4 @@
+1: Job ID 1 with priority -7 has been processed, remaining time length: 1
+2: Job ID 2 with priority -6 has been processed, remaining time length: 1
+3: Job ID 2 with priority -3 has been processed, the job is done
+4: Job ID 1 with priority -2 has been processed, the job is done
